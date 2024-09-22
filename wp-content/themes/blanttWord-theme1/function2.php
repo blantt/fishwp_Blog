@@ -56,7 +56,7 @@ function callRestApi2()
     // 获取WordPress文章数据
     $response = file_get_contents($apiUrl);
 
-    // 将JSON字符串解析为PHP数组333
+    // 将JSON字符串解析为PHP数组3
     $notes = json_decode($response, true);
 
     // 如果获取数据成功
