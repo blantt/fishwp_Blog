@@ -2,7 +2,7 @@
 add_action('wp_ajax_my_custom_action', 'my_custom_action_callback');
 add_action('wp_ajax_nopriv_my_custom_action', 'my_custom_action_callback');
 
-//這一行,是讓header呼叫wp_head()時,不自動顥示上方的工具00
+//這一行,是讓header呼叫wp_head()時,不自動顥示上方的工具001
 add_filter('show_admin_bar', '__return_false');
 
 function my_custom_action_callback()
