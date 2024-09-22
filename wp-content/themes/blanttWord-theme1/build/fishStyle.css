@@ -1,0 +1,63 @@
+/*justify-content============*/
+/*flex-start：子項目靠主軸的起始位置。
+    flex-end：子項目靠主軸的結束位置。
+    center：子項目居中對齊。
+    space-between：子項目之間等距離排列，第一個和最後一個子項目緊靠容器邊緣。
+    space-around：子項目之間距離相等，但第一個和最後一個子項目與容器邊緣之間也有一半的間距。*/
+    .box_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .testbk{
+        background-color:coral;
+      
+      }
+      
+      
+    .box_container .row {
+        width: 100%;
+         
+    }
+    
+    .boxrow {
+        width: 100%;
+    } 
+
+    .testcc{
+        background-color:aquamarine;
+    }
+    
+    
+    /*container 內容重直排列*/
+    .box_column {
+        flex-direction: column;
+    }
+    
+    
+    .box_item {
+        display: flex;
+        justify-content: flex-start;
+        flex-grow: 0; /* flex-grow=1,自動填滿父物件 */
+        text-align: left;
+    }
+    
+    .itemfull {
+        flex-grow: 1; /* flex-grow=1,自動填滿父物件 */
+    }
+    
+    .box_start {
+        justify-content: flex-start;
+    }
+    
+    .box_center {
+        justify-content: center;
+    }
+    
+    
+    .box_end {
+        justify-content: flex-end;
+    }
+    
+    

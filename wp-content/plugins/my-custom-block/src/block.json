@@ -1,0 +1,22 @@
+{
+    "apiVersion": 2,
+    "name": "my-plugin/my-custom-block",
+    "title": "My Custom Block",
+    "category": "widgets",
+    "icon": "smiley",
+    "description": "A custom block for my plugin",
+    "supports": {
+      "html": false
+    },
+    "attributes": {
+      "content": {
+        "type": "string",
+        "source": "html",
+        "selector": "p"
+      }
+    },
+    "editorScript": "file:./block.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css"
+  }
+  
