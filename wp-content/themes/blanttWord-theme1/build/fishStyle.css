@@ -1,3 +1,5 @@
+
+
 /*justify-content============*/
 /*flex-start：子項目靠主軸的起始位置。
     flex-end：子項目靠主軸的結束位置。
@@ -10,25 +12,14 @@
         align-items: center;
     }
     
-    .testbk{
-        background-color:coral;
-      
-      }
-      
-      
+     
     .box_container .row {
         width: 100%;
-         
     }
     
     .boxrow {
         width: 100%;
     } 
-
-    .testcc{
-        background-color:aquamarine;
-    }
-    
     
     /*container 內容重直排列*/
     .box_column {
@@ -60,4 +51,7 @@
         justify-content: flex-end;
     }
     
+    .ttt1{
+        background-color:chartreuse;
+    }
     

@@ -7,7 +7,76 @@
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 </head>
+<?php get_header('empty'); ?>
 <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        /* 確保 body 和 html 高度也設定為100% */
+        font-family: 'Noto Sans TC', sans-serif;
+        /* 繁體中文 */
+    }
+
+    .fullbk {
+        height: 100vh;
+        background-image: url(<?php echo get_theme_file_uri('/images/fishbk3.png') ?>);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: right center;
+    }
+
+    .box上方 {
+        /*  background-color:aquamarine;*/
+        padding-top: 0px;
+        height: 30px;
+    }
+
+    .box下方 {
+        /* background-color: darkgray;*/
+        padding-top: 0px;
+    }
+
+    .back {}
+
+    .talk {
+        width: 250px;
+        height: 300px;
+        color: white;
+        padding-right: 0px;
+        position: absolute;
+        bottom: 20px;
+        right: 50px;
+    }
+
+    .bk2 {
+
+        width: 230px;
+        height: 60px;
+        background-image: url(<?php echo get_theme_file_uri('/images/bkborder3.png') ?>);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        /* 水平居中 */
+        /*align-items: center;*/
+        /* 垂直居中 */
+        padding-top: 2px;
+    }
+
+    .bk3 {
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: 12px;
+        width: 230px;
+        height: 200px;
+        border: 1px solid black;
+        border-color: rgb(182, 186, 133);
+    }
+
+    /* ============= */
     #custom-hr {
         width: 90%;
         height: 3px;
@@ -28,9 +97,9 @@
         /* 添加陰影 */
         background-color: rgba(178, 210, 201, 0.3);
         /* 設置背景色 */
-         
+
     }
-     
+
     .box1 {
         display: flex;
         flex-direction: column;
@@ -132,85 +201,54 @@
 <?php
 
 pageBanner2();
- 
+
 ?>
 
-<div class="container-fluid">
+<div class=" fullbk box_container box_column box_start" style="height:100%;background-color:burlywood">
+    <div class="box_container row ">
+        <div class="box_item col4">
+            444
 
+        </div>
+        <div class="box_item col1" style="background-color:coral">
+            99
 
-    <div class="background-container">
-        <!-- 内容 -->
-        <div class="content">
-            <div class="row" style="height:100%">
-                <div class="col">
-                    <!-- 第一个水平排列的内容 -->
-                    <div class="text-center">
-                        <h2 class="font1">淡魚之家</h2>
-                        <p class="font1">世界危險而又美麗,與淡魚一同來冒險吧</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="div-style font1 box1">
-                            <div class="box2">
-                                <div class="box2_col3">
-                                    <h4 class="font1">公佈欄</h4>
-                                     
-                                </div>
+        </div>
+    </div>
 
-                                <div class="font1">
+    <div class="box_item row box上方  ">
+        <div class="ttt1">
+            ssss
+        </div>
 
-                                </div>
-                                <!-- <div class="box2_col2">
-                                    <h4 class="font1">公佈欄</h4>
-                                </div> -->
-                            </div>
-                            <hr id="custom-hr">
+    </div>
+    <div class="box_item row itemfull box下方 ">
+        <div class="row">
+            ddd555
+        </div>
+        <div class="row">
+            333
+        </div>
+        <div class="row" style="position: relative; ">
+            <div class="talk">
 
-                            <div>
-                                即將開幕
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="bk2">
+                    公佈欄
                 </div>
-                <div class="col book1">
-                    <!-- 第二个水平排列的内容 -->
-                    <div class="text-center ">
-                        <h1></h1>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- 第三个水平排列的内容 -->
-                    <div class="text-center">
-                        <div class="div-style font1 box1" style="height:400px">
-                            <div class="box2">
-                                <div class="box2_col4">
-                                    <h4 class="font1"></h4>
-
-                                </div>
-
-                                <div class="font1">
-
-                                </div>
-                                <!-- <div class="box2_col2">
-                                    <h4 class="font1">公佈欄</h4>
-                                </div> -->
-                            </div>
-                            <hr id="custom-hr">
-
-                            <div>
-                                
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
+                <div class="bk3">
+                    我是淡魚,
+                    這是記錄著自己生活和學習歷程的小園地,
+                    希望是個溫暖,微微又堅定的散發光芒,
+                    期許自己也要持續更新!
+                    <p>
+                        漫畫連載中!敬請期待
 
                 </div>
             </div>
         </div>
     </div>
+
+
+
 </div>
+ 
