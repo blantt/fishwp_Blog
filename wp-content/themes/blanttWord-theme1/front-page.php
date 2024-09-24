@@ -198,38 +198,28 @@
         color: blue;
     }
 </style>
-<?php
 
-pageBanner2();
-
-?>
 
 <div class=" fullbk box_container box_column box_start" style="height:100%;background-color:burlywood">
-    <div class="box_container row ">
-        <div class="box_item col4">
-            444
-
-        </div>
-        <div class="box_item col1" style="background-color:coral">
-            99
-
-        </div>
-    </div>
-
-    <div class="box_item row box上方  ">
-        <div class="ttt1">
-            ssss
-        </div>
+    <div class="box_container boxrow ">
 
     </div>
-    <div class="box_item row itemfull box下方 ">
-        <div class="row">
-            ddd555
+
+    <div class="box_item boxrow box上方  ">
+        <?php
+
+        pageBanner2();
+
+        ?>
+    </div>
+    <div class="box_item boxrow itemfull box下方 ">
+        <div class="boxrow">
+
         </div>
-        <div class="row">
-            333
+        <div class="boxrow">
+
         </div>
-        <div class="row" style="position: relative; ">
+        <div class="boxrow" style="position: relative; ">
             <div class="talk">
 
                 <div class="bk2">
@@ -251,4 +241,3 @@ pageBanner2();
 
 
 </div>
- 

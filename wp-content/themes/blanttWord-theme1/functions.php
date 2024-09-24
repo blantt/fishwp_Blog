@@ -146,7 +146,7 @@ function university_files() {
   wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css?v=2'));
   wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
   
-  wp_enqueue_style('blanttStyle1', get_theme_file_uri('/build/fishStyle.css?v=3'));
+  wp_enqueue_style('blanttStyle1', get_theme_file_uri('/build/fishStyle.css?v=4'));
   wp_enqueue_style('blanttStyle2', get_theme_file_uri('/build/fish_bootstrap.css?v=3'));
 
   wp_localize_script('main-university-js', 'universityData', array(
