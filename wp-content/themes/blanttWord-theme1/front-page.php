@@ -29,7 +29,7 @@
     }
 
     .box上方 {
-        /*  background-color:aquamarine;*/
+        /*  background-color:aquamarine;22*/
         padding-top: 0px;
         height: 30px;
     }
@@ -76,127 +76,7 @@
         border-color: rgb(182, 186, 133);
     }
 
-    /* ============= */
-    #custom-hr {
-        width: 90%;
-        height: 3px;
-        border: none;
-        background-color: rgb(56, 106, 185);
-        margin: 10px auto;
-    }
-
-
-    .div-style {
-        /*基本邊框和填充*/
-        border: 2px solid rgb(56, 106, 185);
-        border-radius: 10px;
-        padding: 10px;
-        margin: 20px;
-        /*添加陰影*/
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-        /* 添加陰影 */
-        background-color: rgba(178, 210, 201, 0.3);
-        /* 設置背景色 */
-
-    }
-
-    .box1 {
-        display: flex;
-        flex-direction: column;
-        /* 子元素垂直排列 */
-        width: 90%;
-        height: 250px;
-
-    }
-
-    .box2 {
-        display: flex;
-
-    }
-
-    .box2_col1 {
-        width: 50px;
-        height: 40px;
-        background-image: url(<?php echo get_theme_file_uri('/images/iconfish.png') ?>);
-        background-size: cover;
-
-    }
-
-    .box2_col2 {
-
-        flex-grow: 1;
-    }
-
-    .box2_col3 {
-        width: 100%;
-        height: 40px;
-        background-image: url(<?php echo get_theme_file_uri('/images/iconfish.png') ?>);
-        background-size: 50px 40px;
-        background-repeat: no-repeat;
-        background-position: left center;
-    }
-
-    .box2_col4 {
-        width: 100%;
-        height: 40px;
-        background-image: url(<?php echo get_theme_file_uri('/images/icon生物1.png') ?>);
-        background-size: 50px 40px;
-        background-repeat: no-repeat;
-        background-position: left center;
-    }
-
-    .topmenu {
-        height: 70px;
-    }
-
-    .background-container {
-        position: relative;
-        width: 100%;
-        height: 500px;
-        /* 设置容器高度 */
-        overflow: hidden;
-        /* 隐藏溢出内容 */
-    }
-
-    .font1 {
-        font-family: "Zen Maru Gothic", serif;
-        font-weight: 400;
-        font-style: normal;
-        color: rgb(29, 27, 128);
-    }
-
-    .book1 {
-
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        background-image: url(<?php echo get_theme_file_uri('/images/主角設定1.png') ?>);
-    }
-
-    /* 设置背景图及透明度 */
-    .background-container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url(<?php echo get_theme_file_uri('/images/fishbk2.png') ?>);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0.3;
-        /* 设置透明度 */
-        z-index: -1;
-    }
-
-    /* 内容样式 */
-    .content {
-        position: relative;
-        z-index: 1;
-        padding: 20px;
-        color: blue;
-    }
+    
 </style>
 
 
