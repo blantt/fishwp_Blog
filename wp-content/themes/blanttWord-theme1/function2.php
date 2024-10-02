@@ -126,7 +126,7 @@ function blanttJs()
 
 <?php
 }
-//TODO 上方按鈕
+//TODO 上方按鈕3
 function pageBanner2()
 {
     blanttJs();
