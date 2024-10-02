@@ -137,7 +137,7 @@ function pageBanner($args = NULL) {
     </div>  
   </div>
 <?php }
-
+//TDOD 引用自定義
 function university_files() {
   wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyDin3iGCdZ7RPomFLyb2yqFERhs55dmfTI', NULL, '1.0', true);
   wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
@@ -148,7 +148,7 @@ function university_files() {
   
   wp_enqueue_style('blanttStyle1', get_theme_file_uri('/build/fishStyle.css?v=4'));
   wp_enqueue_style('blanttStyle2', get_theme_file_uri('/build/fish_bootstrap.css?v=3'));
-
+  wp_enqueue_style('blanttStyle3', get_theme_file_uri('/build/fishpage.css?v=2'));
   wp_localize_script('main-university-js', 'universityData', array(
     'root_url' => get_site_url(),
     'nonce' => wp_create_nonce('wp_rest')
