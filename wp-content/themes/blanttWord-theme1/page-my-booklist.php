@@ -38,7 +38,7 @@
 
         .image-container {
             height: 450px;
-            /* 設定高度 */
+            /* 設定高度3 */
             background-image: url(<?php echo get_theme_file_uri('/images/pic黑板封面.png') ?>);
             background-size: cover;
             background-position: center;
@@ -88,7 +88,7 @@ get_header('empty');
                             </h3>
                         </div>
                         <div class="box_item" style=" margin-left: auto;">
-                           <a href="<?php echo esc_url(site_url('/my-books')); ?>">閱讀</a>
+                           <a href="<?php echo esc_url(site_url('/books/黑板的秘密')); ?>">閱讀</a>
                         </div>
                     </div>
                    

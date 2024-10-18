@@ -137,7 +137,7 @@ function pageBanner($args = NULL) {
     </div>  
   </div>
 <?php }
-//TDOD 引用自定義tt2
+//TDOD 引用自定義33
 function university_files() {
   wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyDin3iGCdZ7RPomFLyb2yqFERhs55dmfTI', NULL, '1.0', true);
   wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
