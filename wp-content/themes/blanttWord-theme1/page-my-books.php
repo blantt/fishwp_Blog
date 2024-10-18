@@ -13,7 +13,7 @@
         #post-container {
             width: 90%;
             margin: 20px auto;
-            /* 上下邊距為20px，左右自動（auto）以實現居中 */
+            /* 上下邊距為20px，左右自動（auto）以實現居中23 */
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             /* 可選，增加陰影效果以突出容器 */
