@@ -1,6 +1,6 @@
 <?php
 /**
- * Educational Blocks functions and definitions
+ * Educational Blocks functions and definitions2
  *
  * @package Educational Blocks
  */
