@@ -140,7 +140,7 @@ function pageBanner2()
                     <!-- 这里放置你想要右对齐的内容 -->
 
                     <!-- <button type="button" class="btn btn-outline-primary">
-                        <i class="bi bi-emoji-laughing"></i> 魚的文章
+                        <i class="bi bi-emoji-laughing"></i> 魚的文章22
                     </button> -->
 
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn-outline-success">
