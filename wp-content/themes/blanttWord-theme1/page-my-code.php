@@ -62,7 +62,7 @@
     ?>
     <div id="post-container">
         <?php
-        // 創建一個新的查詢對象
+        // 創建一個新的查詢對象2
         $userNotes = new WP_Query(array(
             'post_type' => 'code',
             'posts_per_page' => -1,
