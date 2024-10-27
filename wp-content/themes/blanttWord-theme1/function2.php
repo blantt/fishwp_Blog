@@ -155,7 +155,7 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-notes')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>軟體人生
                     </a>
-                    <a href="<?php echo esc_url(site_url('/aaaa')); ?>" class="btn btn-outline-primary">
+                    <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
                     <a href="<?php echo esc_url(site_url('/my-testmenu')); ?>" class="btn btn-outline-success">
