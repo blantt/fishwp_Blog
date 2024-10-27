@@ -110,7 +110,7 @@ add_action('rest_api_init', 'university_custom_rest');
 
 function pageBanner($args = NULL) {
   
-  // if (!$args['title']) {ffff225566
+  // if (!$args['title']) {ffff
   //   $args['title'] = get_the_title();
   // }
 
