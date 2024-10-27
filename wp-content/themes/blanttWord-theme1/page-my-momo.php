@@ -91,11 +91,19 @@
     </div>
     <div id="post-container">
       <?php
+      $category_slug = '第一章';
       // 創建一個新的查詢對象
       $userNotes = new WP_Query(array(
         'post_type' => 'momo',
         'posts_per_page' => -1,
         'author' => get_current_user_id()
+        // 'tax_query' => array(
+        //     array(
+        //         'taxonomy' => 'level_momo', // 這裡是你註冊的分類法名稱
+        //         'field'    => 'slug', // 使用 slug 進行比對
+        //         'terms'    => $category_slug, // 使用指定的分類名稱
+        //     ),
+        // ),
       ));
 
       // 檢查是否有文章
