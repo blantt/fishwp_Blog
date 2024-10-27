@@ -248,3 +248,32 @@ function ourLoginTitle() {
   return get_bloginfo('name');
 }
 
+//這裡設定小說自己的類別,對應momo
+function register_level_momo() {
+  // 設定標籤
+  $labels = array(
+      'name'              => '小說類別',
+      'singular_name'     => '小說類別',
+      'search_items'      => '搜尋小說類別',
+      'all_items'         => '所有小說類別',
+      'parent_item'       => '父級小說類別',
+      'parent_item_colon' => '父級小說類別:',
+      'edit_item'         => '編輯小說類別',
+      'update_item'       => '更新小說類別',
+      'add_new_item'      => '新增小說類別',
+      'new_item_name'     => '新增小說類別名稱',
+      'menu_name'         => '小說類別',
+  );
+
+  // 註冊分類法
+  register_taxonomy('level_momo', 'momo', array(
+      'labels' => $labels,
+      'hierarchical' => true, // 設置為 true 使其支持分層結構
+      'show_admin_column' => true,
+      'show_in_rest' => true,
+      'rewrite' => array('slug' => 'level_momo'),
+  ));
+}
+add_action('init', 'register_level_momo');
+
+
