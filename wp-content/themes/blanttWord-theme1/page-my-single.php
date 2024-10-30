@@ -89,50 +89,10 @@
 
         ?>
     </div>
+    我是單頁
     <div id="post-container">
       <?php
-      $category_slug = '第一章';
-      // 創建一個新的查詢對象
-      $userNotes = new WP_Query(array(
-        'post_type' => 'momo',
-        'posts_per_page' => -1,
-        'author' => get_current_user_id(),
-        // 'tax_query' => array(
-        //     array(
-        //         'taxonomy' => 'level_momo', // 這裡是你註冊的分類法名稱
-        //         'field'    => 'slug', // 使用 slug 進行比對
-        //         'terms'    => $category_slug, // 使用指定的分類名稱
-        //     ),
-        // ),
-        'orderby' => 'date', // 依據發佈時間排序
-        'order' => 'ASC', // 由早到晚
-      ));
-
-      // 檢查是否有文章
-      if ($userNotes->have_posts()) {
-        while ($userNotes->have_posts()) {
-          $userNotes->the_post();
-
-          // 為每篇文章創建一個包含標題、時間和內容的HTML結構
-          echo '<div class="post">';
-          echo '<h2>' . get_the_title() . '</h2>';
-          echo '<p class="date">Published on: ' . get_the_date() . '</p>';
-          echo '<h3><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>'; // 點擊標題連結到單篇文章
- 
-          echo '<h3><a href="' . esc_url(site_url('/my-single?post_id=' . get_the_ID())) . '">' . get_the_title() . '_test</a></h3>';
-
-          // echo '<p class="categories">文章分類2: ';
-        //  the_terms($post->ID, 'mybook', '', ', ');
-        //  echo '</p>';
-        //  echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
-          echo '</div>'; // 文章容器結束
-        }
-      } else {
-        echo '<p>No notes found.</p>';
-      }
-
-      // 重置全局$post物件
-      wp_reset_postdata();
+      
       ?>
         
     </div>
