@@ -115,12 +115,13 @@
 
           // 為每篇文章創建一個包含標題、時間和內容的HTML結構
           echo '<div class="post">';
-          echo '<h2>' . get_the_title() . '</h2>';
-          echo '<p class="date">Published on: ' . get_the_date() . '</p>';
-          echo '<h3><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>'; // 點擊標題連結到單篇文章
+         // echo '<h2>' . get_the_title() . '</h2>';
+          
+         echo '<h3><a href="' . esc_url(site_url('/my-single?post_id=' . get_the_ID())) . '">' . get_the_title() . '</a></h3>';
+         echo '<p class="date">Published on: ' . get_the_date() . '</p>';
+          // echo '<h3><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>'; // 點擊標題連結到單篇文章
  
-          echo '<h3><a href="' . esc_url(site_url('/my-single?post_id=' . get_the_ID())) . '">' . get_the_title() . '_test</a></h3>';
-
+        
           // echo '<p class="categories">文章分類2: ';
         //  the_terms($post->ID, 'mybook', '', ', ');
         //  echo '</p>';

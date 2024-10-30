@@ -92,7 +92,22 @@
     我是單頁
     <div id="post-container">
       <?php
-      
+         if (isset($_GET['post_id'])) {
+            $post_id = intval($_GET['post_id']);
+            $post = get_post($post_id);
+            if ($post) {
+                setup_postdata($post);
+                the_title('<h1>', '</h1>');
+                the_content();
+                wp_reset_postdata();
+            } else {
+                echo '<p>Post not found.</p>';
+            }
+        } else {
+            echo '<p>No post ID specified.</p>';
+        }
+
+
       ?>
         
     </div>
