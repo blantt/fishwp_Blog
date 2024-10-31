@@ -277,3 +277,55 @@ function register_level_momo() {
 add_action('init', 'register_level_momo');
 
 
+
+// 在自定義文章類型的管理頁面上添加篩選器
+function add_novel_category_filter() {
+  $terms = get_terms(array(
+    'taxonomy' => 'level_momo',
+    'hide_empty' => false,
+  )); 
+
+  global $typenow;
+  
+  // 確保當前是在我們的自定義文章類型 'momo' 的管理頁面
+  if ($typenow == 'momo') {
+      $taxonomy = 'level_momo'; // 這裡是你自定義的分類法名稱
+      $terms = get_terms($taxonomy);
+      // echo '<div>篩選器已加載2</div>';
+      // error_log('這是我的測試2: ' . print_r($terms, true));
+      if ($terms && !is_wp_error($terms)) {
+        // echo '<div>篩選器已加載3</div>';
+          echo '<select name="' . $taxonomy . '" id="' . $taxonomy . '" class="postform">';
+          echo '<option value="">' . __('所有小說類別') . '</option>';
+          foreach ($terms as $term) {
+              echo '<option value="' . $term->slug . '" ' . selected(isset($_GET[$taxonomy]) ? $_GET[$taxonomy] : '', $term->slug, false) . '>' . $term->name . '</option>';
+          }
+          echo '</select>';
+      }
+  }
+}
+add_action('restrict_manage_posts', 'add_novel_category_filter');
+
+// 根據篩選器的選擇過濾文章列表
+function filter_novel_category_query($query) {
+  global $pagenow;
+  $taxonomy = 'level_momo';
+
+  if ($pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'momo' && isset($_GET[$taxonomy]) && !empty($_GET[$taxonomy])) {
+      $query->set('tax_query', array(
+          array(
+              'taxonomy' => $taxonomy,
+              'field'    => 'slug',
+              'terms'    => $_GET[$taxonomy],
+          ),
+      ));
+  }
+}
+add_action('pre_get_posts', 'filter_novel_category_query');
+   
+add_action('init', function() {
+  
+   // error_log('這是我的測試: ' . print_r(get_object_taxonomies('momo'), true));
+}, 20);
+
+

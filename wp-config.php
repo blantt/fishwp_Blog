@@ -79,7 +79,12 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+
+// 這裡是設定log的顥示
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_DEBUG_DISPLAY', false); // 禁止直接在畫面顯示錯誤訊息
+@ini_set('display_errors', 0);
 
 /* Add any custom values between this line and the "stop editing" line. */
 
