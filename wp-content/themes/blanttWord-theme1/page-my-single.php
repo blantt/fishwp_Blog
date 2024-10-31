@@ -77,11 +77,9 @@
   }
 </style>
  
-<div class=" fullbk box_container box_column box_start" style="height:100%;background-color:burlywood">
-  <div class="box_item boxrow box上方  ">
-      
-  </div>
-  <div class="box_item boxrow box_column itemfull box下方 " style="   background-color:aquamarine;">
+<div class=" fullbk box_container box_column box_start" style="height:100%; ">
+   
+  <div class="box_item boxrow box_column itemfull box下方 "  >
     <div>
     <?php
 

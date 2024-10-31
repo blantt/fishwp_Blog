@@ -17,12 +17,12 @@
     /* 確保 body 和 html 高度也設定為100%222 */
     font-family: 'Noto Sans TC', sans-serif;
     /* 繁體中文 */
-   
+
 
   }
-   
-  .itemfull{
-    background-image:  url(<?php echo get_theme_file_uri('/images/noteback1.png') ?>); 
+
+  .itemfull {
+    background-image: url(<?php echo get_theme_file_uri('/images/noteback1.png') ?>);
     background-size: cover;
     /* background-repeat: no-repeat;   */
     background-attachment: fixed;
@@ -31,9 +31,9 @@
   }
 
   .fullbk {
-    height: 100vh;  
-   
-   
+    height: 100vh;
+
+
   }
 
   .box上方 {
@@ -76,18 +76,16 @@
     text-align: justify;
   }
 </style>
- 
-<div class=" fullbk box_container box_column box_start" style="height:100%;background-color:burlywood">
-  <div class="box_item boxrow box上方  ">
-      
-  </div>
-  <div class="box_item boxrow box_column itemfull box下方 " style="   background-color:aquamarine;">
+
+<div class=" fullbk box_container box_column box_start" style="height:100%; ">
+
+  <div class="box_item boxrow box_column itemfull box下方 ">
     <div>
-    <?php
+      <?php
 
-        pageBanner2();
+      pageBanner2();
 
-        ?>
+      ?>
     </div>
     <div id="post-container">
       <?php
@@ -120,9 +118,9 @@
       // 重置全局$post物件
       wp_reset_postdata();
       ?>
-        
+
     </div>
-   
+
 
   </div>
 

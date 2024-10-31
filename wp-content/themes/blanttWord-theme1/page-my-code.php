@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <title>My Notes</title>
     <style>
-         html, body {
-            height: 100%;
+         body {
             margin: 0;
+            padding: 0;
+            height: 100%;
+            /* 確保 body 和 html 高度也設定為100%222 */
+            font-family: 'Noto Sans TC', sans-serif;
+            /* 繁體中文 */
         }
 
         #post-container {
