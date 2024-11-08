@@ -1,4 +1,5 @@
 <?php
+ require_once get_template_directory() . '/functionMenu.php';
  require_once get_template_directory() . '/function2.php';
 
 
@@ -110,22 +111,6 @@ add_action('rest_api_init', 'university_custom_rest');
 
 function pageBanner($args = NULL) {
   
-  // if (!$args['title']) {ffff
-  //   $args['title'] = get_the_title();
-  // }
-
-  // if (!$args['subtitle']) {
-  //   $args['subtitle'] = get_field('page_banner_subtitle');
-  // }
-
-  // if (!$args['photo']) {
-  //   if (get_field('page_banner_background_image') AND !is_archive() AND !is_home() ) {
-  //     $args['photo'] = get_field('page_banner_background_image')['sizes']['pageBanner'];
-  //   } else {
-  //     $args['photo'] = get_theme_file_uri('/images/ocean.jpg');
-  //   }
-  // }
-
   ?>
   <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url(<?php echo $args['photo']; ?>);"></div>
@@ -248,84 +233,6 @@ function ourLoginTitle() {
   return get_bloginfo('name');
 }
 
-//這裡設定小說自己的類別,對應momo
-function register_level_momo() {
-  // 設定標籤
-  $labels = array(
-      'name'              => '小說類別',
-      'singular_name'     => '小說類別',
-      'search_items'      => '搜尋小說類別',
-      'all_items'         => '所有小說類別',
-      'parent_item'       => '父級小說類別',
-      'parent_item_colon' => '父級小說類別:',
-      'edit_item'         => '編輯小說類別',
-      'update_item'       => '更新小說類別',
-      'add_new_item'      => '新增小說類別',
-      'new_item_name'     => '新增小說類別名稱',
-      'menu_name'         => '小說類別',
-  );
 
-  // 註冊分類法
-  register_taxonomy('level_momo', 'momo', array(
-      'labels' => $labels,
-      'hierarchical' => true, // 設置為 true 使其支持分層結構
-      'show_admin_column' => true,
-      'show_in_rest' => true,
-      'rewrite' => array('slug' => 'level_momo'),
-  ));
-}
-add_action('init', 'register_level_momo');
-
-
-
-// 在自定義文章類型的管理頁面上添加篩選器
-function add_novel_category_filter() {
-  $terms = get_terms(array(
-    'taxonomy' => 'level_momo',
-    'hide_empty' => false,
-  )); 
-
-  global $typenow;
-  
-  // 確保當前是在我們的自定義文章類型 'momo' 的管理頁面
-  if ($typenow == 'momo') {
-      $taxonomy = 'level_momo'; // 這裡是你自定義的分類法名稱
-      $terms = get_terms($taxonomy);
-      // echo '<div>篩選器已加載2</div>';
-      // error_log('這是我的測試2: ' . print_r($terms, true));
-      if ($terms && !is_wp_error($terms)) {
-        // echo '<div>篩選器已加載3</div>';
-          echo '<select name="' . $taxonomy . '" id="' . $taxonomy . '" class="postform">';
-          echo '<option value="">' . __('所有小說類別') . '</option>';
-          foreach ($terms as $term) {
-              echo '<option value="' . $term->slug . '" ' . selected(isset($_GET[$taxonomy]) ? $_GET[$taxonomy] : '', $term->slug, false) . '>' . $term->name . '</option>';
-          }
-          echo '</select>';
-      }
-  }
-}
-add_action('restrict_manage_posts', 'add_novel_category_filter');
-
-// 根據篩選器的選擇過濾文章列表
-function filter_novel_category_query($query) {
-  global $pagenow;
-  $taxonomy = 'level_momo';
-
-  if ($pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'momo' && isset($_GET[$taxonomy]) && !empty($_GET[$taxonomy])) {
-      $query->set('tax_query', array(
-          array(
-              'taxonomy' => $taxonomy,
-              'field'    => 'slug',
-              'terms'    => $_GET[$taxonomy],
-          ),
-      ));
-  }
-}
-add_action('pre_get_posts', 'filter_novel_category_query');
-   
-add_action('init', function() {
-  
-   // error_log('這是我的測試: ' . print_r(get_object_taxonomies('momo'), true));
-}, 20);
 
 
