@@ -7,7 +7,7 @@ add_filter('show_admin_bar', '__return_false');
 
 function my_custom_action_callback()
 {
- 
+
     $func = $_POST['func'];
     // error_log($func);
     switch ($func) {
@@ -119,10 +119,34 @@ function blanttJs()
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <!-- ---自定義js========= -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
 
     <!-- 引入 Kendo UI JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2021.3.914/js/kendo.all.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <style>
+
+        /* 設定子選單位置 */
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%; /* 讓子選單靠右對齊 */
+                margin-top: -0.5rem; /* 微調位置 */
+                display: none; /* 預設不顯示子選單 */
+            }
+
+            .dropdown-submenu:hover > .dropdown-menu {
+                display: block; /* 滑鼠移入時顯示子選單 */
+            }
+
+    </style>
+
 
 <?php
 }
@@ -139,16 +163,27 @@ function pageBanner2()
                 <div style="text-align: right;">
                     <!-- 这里放置你想要右对齐的内容 -->
 
-                    <!-- <button type="button" class="btn btn-outline-primary">
-                        <i class="bi bi-emoji-laughing"></i> 魚的文章22
-                    </button> -->
+
 
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn-outline-success">
                         <i class="bi bi-house"></i> Home
                     </a>
-                    <!-- <a href="<?php echo esc_url(site_url('/my-notes')); ?>" class="btn btn-outline-secondary">
-                        <i class="bi bi-bookmarks-plug"></i>My Notes
-                    </a> -->
+                  
+                    <a class="btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-bookmarks-fill"> </i> test下拉
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Option 1</a></li>
+                        <li><a class="dropdown-item" href="#">Option 2</a></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">More Options</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Sub-option 1</a></li>
+                                <li><a class="dropdown-item" href="#">Sub-option 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
                     <a href="<?php echo esc_url(site_url('/my-notes2')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>心情散文
                     </a>
@@ -166,26 +201,26 @@ function pageBanner2()
                         <i class="bi bi-bookmarks-fill"></i> testMenu
                     </a>
 
+                  
+
                     <!-- <a href="<?php echo esc_url(admin_url('/')); ?>" class="btn btn-outline-success">
                         <i class="bi bi-bluetooth"></i> 控制台
                     </a> -->
 
                     <?php
                     // 在WordPress模板或自定义页面模板中
-                    if (is_user_logged_in()==true) {
+                    if (is_user_logged_in() == true) {
                         // 如果用户已登录，显示按钮
                         echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
                         echo '<a href="' . esc_url(wp_registration_url()) . '" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>';
-                       
                     } else {
                         // 可选：如果用户未登录，显示登录提示或不显示任何内容
-                         
+
                         echo '<a href="' . esc_url(wp_login_url()) . ' class="btn btn--small btn--orange float-left push-right">Login</a>';
                     }
-                   
-                    ?>
 
- 
+                    ?>
+                    
                 </div>
             </div>
         </div>
@@ -193,7 +228,7 @@ function pageBanner2()
     </div>
 
 
-<?php 
+<?php
 
 
 }

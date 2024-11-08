@@ -6,6 +6,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+
 
     <style>
         html,
@@ -74,11 +76,13 @@
             border: 1px solid black;
             border-color: rgb(182, 186, 133);
         }
+
+        
     </style>
 
 </head>
 <?php get_header('empty'); ?>
- 
+
 <div class=" fullbk box_container box_column box_start" style="height:100%;background-color:burlywood">
     <div class="box_container boxrow ">
 
@@ -93,7 +97,16 @@
     </div>
     <div class="box_item boxrow itemfull box下方 ">
         <div class="boxrow">
-
+            <!-- <div>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu3
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Option 1</a></li>
+                    <li><a class="dropdown-item" href="#">Option 2</a></li>
+                    <li><a class="dropdown-item" href="#">Option 3</a></li>
+                </ul>
+            </div> -->
         </div>
         <div class="boxrow">
 
@@ -103,6 +116,7 @@
 
                 <div class="bk2">
                     公佈欄
+
                 </div>
                 <div class="bk3">
                     我是淡魚,

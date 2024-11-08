@@ -235,6 +235,6 @@ function blantt_post_types() {
     
   }
 
-  add_action('init', 'register_menu_note');  // ,0); menu位置最上方
+  add_action('init', 'register_menu_note');  
   
 

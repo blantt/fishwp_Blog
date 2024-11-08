@@ -122,8 +122,9 @@ function pageBanner($args = NULL) {
     </div>  
   </div>
 <?php }
-//TDOD 引用自定義3322
+//TDOD 引用自定義 
 function university_files() {
+ 
   wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyDin3iGCdZ7RPomFLyb2yqFERhs55dmfTI', NULL, '1.0', true);
   wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
   wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
@@ -138,6 +139,8 @@ function university_files() {
     'root_url' => get_site_url(),
     'nonce' => wp_create_nonce('wp_rest')
   ));
+
+  //wp_enqueue_script('bootstrapMenu', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js', NULL, '1.0', true);
 
 }
 
