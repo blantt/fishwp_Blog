@@ -4,5 +4,8 @@
 # 允許追蹤資料夾（但不追蹤資料夾中的檔案）
 !*/
 
+wp-content/themes/blanttWord-theme1/wpfish
+
+
 # 但允許追蹤 .php 檔案
 !*.php
