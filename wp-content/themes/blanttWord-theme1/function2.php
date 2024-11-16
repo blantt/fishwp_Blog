@@ -119,8 +119,7 @@ function blanttJs()
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <!-- ---自定義js========= -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
-
+   
     <!-- 引入 Kendo UI JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2021.3.914/js/kendo.all.min.js"></script>
@@ -170,18 +169,20 @@ function pageBanner2()
                     </a>
                   
                     <a class="btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-bookmarks-fill"> </i> test下拉
+                        <i class="bi bi-bookmarks-fill"> </i> 小說創作
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Option 1</a></li>
-                        <li><a class="dropdown-item" href="#">Option 2</a></li>
+                        
                         <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="#">More Options</a>
+                            <a class="dropdown-item" href="#">
+                            長篇小說 <i class="fas fa-chevron-right"></i> <!-- 添加右箭頭圖標 -->
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Sub-option 1</a></li>
-                                <li><a class="dropdown-item" href="#">Sub-option 2</a></li>
+                                <li><a class="dropdown-item" href="<?php echo esc_url(site_url('/my-momo?sch=生命樹')); ?>">生命樹的願望</a></li>
+                                <li><a class="dropdown-item" href="<?php echo esc_url(site_url('/my-momo?sch=異夢')); ?>">異夢</a></li>
                             </ul>
                         </li>
+                        <li><a class="dropdown-item"  href="<?php echo esc_url(site_url('/my-momo?sch=短篇小說')); ?>">短篇小說集</a></li>
                     </ul>
 
                     <a href="<?php echo esc_url(site_url('/my-notes2')); ?>" class="btn btn-outline-primary">
@@ -193,10 +194,7 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
-                    <a href="<?php echo esc_url(site_url('/my-momo')); ?>" class="btn btn-outline-primary">
-                        <i class="bi bi-egg-fried"></i>小說創作
-                    </a>
-
+                     
                     <a href="<?php echo esc_url(site_url('/my-testmenu')); ?>" class="btn btn-outline-success">
                         <i class="bi bi-bookmarks-fill"></i> testMenu
                     </a>

@@ -6,8 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
-
+   
 
     <style>
         html,
@@ -91,7 +90,7 @@
     <div class="box_item boxrow box上方  ">
         <?php
 
-        pageBanner2();
+           pageBanner2();
 
         ?>
     </div>

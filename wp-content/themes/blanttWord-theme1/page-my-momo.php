@@ -89,21 +89,37 @@
     </div>
     <div id="post-container">
       <?php
-      $category_slug = '第一章';
+      $sch = '';
+      if (isset($_GET['sch'])) {
+        $sch = $_GET['sch'];
+       // echo "接收到的 id 是: " . htmlspecialchars($sch); // 顯示並避免 XSS 攻擊
+      } else {
+       // echo "沒有接收到 id 參數";
+      }
+
+      $category_slug =  $sch;
       // 創建一個新的查詢對象
+      $sort='';
+      if ($category_slug=='短篇小說'){
+        $sort= 'DESC';
+      } else {
+
+        $sort= 'ASC';
+      }
+
       $userNotes = new WP_Query(array(
         'post_type' => 'momo',
         'posts_per_page' => -1,
         'author' => get_current_user_id(),
-        // 'tax_query' => array(
-        //     array(
-        //         'taxonomy' => 'level_momo', // 這裡是你註冊的分類法名稱
-        //         'field'    => 'slug', // 使用 slug 進行比對
-        //         'terms'    => $category_slug, // 使用指定的分類名稱
-        //     ),
-        // ),
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'level_momo', // 這裡是你註冊的分類法名稱
+                'field'    => 'slug', // 使用 slug 進行比對
+                'terms'    => $category_slug, // 使用指定的分類名稱
+            ),
+        ),
         'orderby' => 'date', // 依據發佈時間排序
-        'order' => 'ASC', // 由早到晚
+        'order' =>  $sort, // 由早到晚
       ));
 
       // 檢查是否有文章
