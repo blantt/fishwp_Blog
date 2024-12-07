@@ -8,7 +8,7 @@ while (have_posts()) {
 ?>
  
   <div class="container container--narrow page-section">
-     我是漫畫
+     
 
     <div ><?php the_content(); ?></div>
 

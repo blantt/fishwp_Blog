@@ -1,0 +1,37 @@
+{
+    "取得wp檔案路徑": {
+        "prefix": "mygetImagepath",          
+        "body": [
+            "url(<?php echo get_theme_file_uri('/images/${1:yourfilename}') ?>)" 
+        ],
+        "description": "取得wp檔案路徑" // 可選，片段的描述
+    } ,
+    "card 邊框": {
+        "prefix": "getCardborder",          
+        "body": [
+            "border: 1px solid #4caf50; /* 設定邊框的粗細、樣式和顏色 */" 
+            ,"border-radius: 15px ; /* 設定圓角半徑 */"
+            ,"box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);"
+        ],
+        "description": "card 邊框" // 可選，片段的描述eee
+    } ,
+
+    "Image Container CSS": {
+      "prefix": "myimagecss",
+      "body": [
+        ".image-container {",
+        "    height: ${1:450px};",
+        "    /* 設定高度 */",
+        "    background-image: url(${2:your-image-path});",
+        "    background-size: ${3|cover,contain,auto|};",
+        "    /* ackground-size cover:填滿容器;contain:全顯示圖片;auto:原始大小 */",
+        "    background-position: ${4|center,top,left,right,bottom|};",
+        "    /* 選擇 background-position */",
+        "    background-repeat: ${5|no-repeat,repeat,repeat-x,repeat-y|};",
+        "    /* no-repeat;repeat;repeat-x;repeat-y */",
+        "}"
+      ],
+      "description": "快速生成圖片背景的 CSS 設定"  
+    }
+  }
+  

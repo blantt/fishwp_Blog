@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
-   
+
 
     <style>
         html,
@@ -77,14 +77,14 @@
             border: 1px solid black;
             border-color: rgb(182, 186, 133);
         }
-
-        
     </style>
-  <!-- rrr3ww333 -->
+    <!-- rrr3ww333 -->
 </head>
 <?php get_header('empty'); ?>
 
 <div class=" fullbk box_container box_column box_start" style="height:100%;background-color:burlywood">
+     
+
     <div class="box_container boxrow ">
 
     </div>
@@ -92,7 +92,7 @@
     <div class="box_item boxrow box上方  ">
         <?php
 
-           pageBanner2();
+        pageBanner2();
 
         ?>
     </div>

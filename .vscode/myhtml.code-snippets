@@ -1,0 +1,53 @@
+{
+    "描述用的名稱": {
+        "prefix": "mydiv2",            // 觸發片段時輸入的縮寫
+        "body": [
+            "<div class=\"${1:class-name}\">", // ${1} 是第一個動態光標位置
+            "    ${2:內容}",                // ${2} 是第二個動態光標位置
+            "</div>"
+        ],
+        "description": "生成一個 div 標籤qq," // 可選，片段的描述
+    } 
+    ,
+    "生成fishbox": {
+      "prefix": "myfishbox",
+      "body": [
+        "<div class=\"box_container box_column box_start\" >",  
+        "   <div class=\"box_container boxrow box_start \"  >",   
+        "      <div class=\"box_item  col-2 \"  >",   
+        "         111 ",    
+        "      </div> ",         
+        "      <div class=\"box_item  col-3 \"  >",   
+        "         222 ",    
+        "       </div> ",    
+        "   </div> ",   
+        "   <div class=\"box_container boxrow \"> ",    
+        "         333 ",    
+        "   </div> ", 
+        
+        "</div>"
+      ],
+      "description": "快速myfisbox"
+    }
+    ,
+    "生成card": {
+      "prefix": "myfishcard",
+      "body": [
+        " <div class=\"card\">",
+        "   <div class=\"image-container\">",  
+        "      <h3>我是image-container</h3>", 
+        "   </div>",
+        "   <div class=\"card-header\">",  
+        "      <h3>我是header</h3>",  
+        "   </div>",
+        "   <div class=\"card-body\">",  
+        "      <h7>我是card-body</h7>",  
+        "   </div>",
+
+        "</div>"
+
+      ],
+      "description": "快速card"
+    }
+}
+

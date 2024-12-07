@@ -32,6 +32,7 @@
   }
 
   .fullbk {
+ 
     height: 100vh;  
    
    
@@ -111,9 +112,5 @@
         
     </div>
    
-
-  </div>
-
-
-
+  </div> 
 </div>
