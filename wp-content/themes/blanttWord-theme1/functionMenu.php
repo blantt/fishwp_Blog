@@ -85,7 +85,7 @@ function register_level_momo() {
 
   //TODO 自定義文章
 function blantt_post_types() {
-  
+    
     register_post_type('note2', array(
       'show_in_rest' => true,
       'supports' => array('title', 'editor'),
@@ -100,7 +100,7 @@ function blantt_post_types() {
       ),
       'menu_icon' => 'dashicons-welcome-write-blog'
     ));
-  
+    
   }
   
   add_action('init', 'blantt_post_types');

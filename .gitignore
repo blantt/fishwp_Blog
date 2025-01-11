@@ -4,8 +4,6 @@
 # 允許追蹤資料夾
 !*/
 
-# 允許特定目錄和檔案
-wp-content/themes/blanttWord-theme1/wpfish
 !*.php
 
 # 取消忽略 .vscode 資料夾

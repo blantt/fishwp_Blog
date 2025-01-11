@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    /* 確保 body 和 html 高度也設定為100%222 */
+    /* 確保 body 和 html 高度也設定為100% */
     font-family: 'Noto Sans TC', sans-serif;
     /* 繁體中文 */
    

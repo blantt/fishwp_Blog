@@ -13,7 +13,7 @@
             ,"border-radius: 15px ; /* 設定圓角半徑 */"
             ,"box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);"
         ],
-        "description": "card 邊框" // 可選，片段的描述eee
+        "description": "card 邊框" // 可選，片段的描述eeee3
     } ,
 
     "Image Container CSS": {

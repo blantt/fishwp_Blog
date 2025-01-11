@@ -160,7 +160,7 @@ function pageBanner2()
             <div class="col">
                 <!-- 内容置于右侧的 div -->
                 <div style="text-align: right;">
-                    <!-- 这里放置你想要右对齐的内容 -->
+                    <!-- 这里放置你想要右对齐的内容r -->
 
 
 
