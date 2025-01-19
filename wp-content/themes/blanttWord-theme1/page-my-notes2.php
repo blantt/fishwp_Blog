@@ -102,7 +102,7 @@
         while ($userNotes->have_posts()) {
           $userNotes->the_post();
 
-          // 為每篇文章創建一個包含標題、時間和內容的HTML結構
+          // 為每篇文章創建一個包含標題、時間和內容的HTML結構2
           echo '<div class="post">';
           echo '<h2>' . get_the_title() . '</h2>';
           echo '<p class="date">Published on: ' . get_the_date() . '</p>';
