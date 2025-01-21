@@ -105,6 +105,27 @@ function blantt_post_types() {
   
   add_action('init', 'blantt_post_types');
    
+  function blantt_AMC_post_types() {
+    
+    register_post_type('AMC', array(
+      'show_in_rest' => true,
+      'supports' => array('title', 'editor'),
+      'public' => false,
+      'show_ui' => true,
+      'labels' => array(
+        'name' => 'AMC',
+        'add_new_item' => '新增AMC',
+        'edit_item' => '編輯AMC',
+        'all_items' => 'All AMC',
+        'singular_name' => 'AMC'
+      ),
+      'menu_icon' => 'dashicons-welcome-write-blog'
+    ));
+    
+  }
+  
+  add_action('init', 'blantt_AMC_post_types');
+
   function books_custom_post_type() {
       /*
        * $labels 描述了文章類型的顯示方式。

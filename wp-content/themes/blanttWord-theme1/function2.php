@@ -194,9 +194,13 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
-                     
+                    <a href="<?php echo esc_url(site_url('/my-amc')); ?>" class="btn btn-outline-primary">
+                        <i class="bi bi-egg-fried"></i>AMC
+                    </a>
+                    
+
                     <a href="<?php echo esc_url(site_url('/my-testmenu')); ?>" class="btn btn-outline-success">
-                        <i class="bi bi-bookmarks-fill"></i> testMenu
+                        <i class="bi bi-bookmarks-fill"></i> testMenu2
                     </a>
 
                   
