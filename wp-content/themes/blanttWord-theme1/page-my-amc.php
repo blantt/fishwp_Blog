@@ -107,7 +107,7 @@
           echo '<h2>' . get_the_title() . '</h2>';
           echo '<p class="date">Published on: ' . get_the_date() . '</p>';
           echo '<p class="categories">文章分類: ';
-          the_terms($post->ID, 'mybook', '', ', ');
+          the_terms($post->ID, 'amcfilter', '', ', ');
           echo '</p>';
           echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
           echo '</div>'; // 文章容器結束

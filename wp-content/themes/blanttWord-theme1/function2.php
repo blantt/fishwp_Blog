@@ -194,25 +194,17 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
-                    <a href="<?php echo esc_url(site_url('/my-amc')); ?>" class="btn btn-outline-primary">
-                        <i class="bi bi-egg-fried"></i>AMC
-                    </a>
                     
-
                     <a href="<?php echo esc_url(site_url('/my-testmenu')); ?>" class="btn btn-outline-success">
                         <i class="bi bi-bookmarks-fill"></i> testMenu2
                     </a>
-
-                  
-
-                    <!-- <a href="<?php echo esc_url(admin_url('/')); ?>" class="btn btn-outline-success">
-                        <i class="bi bi-bluetooth"></i> 控制台
-                    </a> -->
-
+ 
                     <?php
                     // 在WordPress模板或自定义页面模板中
                     if (is_user_logged_in() == true) {
                         // 如果用户已登录，显示按钮
+                        echo '<a href="' . esc_url(site_url('/my-amc')) . '" class="btn btn-outline-primary">';
+                        echo '<i class="bi bi-egg-fried"></i>AMC</a>';
                         echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
                         echo '<a href="' . esc_url(wp_registration_url()) . '" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>';
                     } else {

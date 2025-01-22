@@ -107,17 +107,17 @@ function blantt_post_types() {
    
   function blantt_AMC_post_types() {
     
-    register_post_type('AMC', array(
+    register_post_type('amc', array(
       'show_in_rest' => true,
       'supports' => array('title', 'editor'),
-      'public' => false,
+      'public' => true,
       'show_ui' => true,
       'labels' => array(
-        'name' => 'AMC',
+        'name' => 'amc',
         'add_new_item' => '新增AMC',
         'edit_item' => '編輯AMC',
         'all_items' => 'All AMC',
-        'singular_name' => 'AMC'
+        'singular_name' => 'amc'
       ),
       'menu_icon' => 'dashicons-welcome-write-blog'
     ));
