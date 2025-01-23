@@ -276,3 +276,33 @@ function get_filtered_posts($post_type, $taxonomy)
 
     return $query; // 回傳 WP_Query 物件
 }
+
+/**
+ * 顯示指定分類法的所有細項（分類項目）
+ *
+ * @param string $taxonomy 分類法名稱
+ */
+function display_taxonomy_terms($taxonomy) {
+     
+    // 抓取指定分類法的所有細項
+    $terms = get_terms(array(
+        'taxonomy' => $taxonomy, // 動態指定分類法
+        'hide_empty' => false    // 是否隱藏沒有文章的分類
+    ));
+
+    if (!empty($terms) && !is_wp_error($terms)) {
+        echo '<div class="box_container box_start" style="padding-bottom:8px;">';
+        echo '<div style="padding-left:3px;">分類標籤:</div>';
+        foreach ($terms as $term) {
+            echo '<div style="padding-left:10px;">';
+            echo '<a href="' . esc_url(get_term_link($term)) . '">';
+            echo esc_html($term->name);
+            echo '</a>';
+            echo '</div>';
+        }
+        echo '</div>';
+    } else {
+        echo '<p>目前沒有分類細項。</p>';
+    }
+}
+

@@ -94,27 +94,33 @@
     <div id="post-container">
       <?php
 
+      display_taxonomy_terms('amcfilter');
 
-      // 抓取 amcfilter 分類的所有細項
-      $terms = get_terms(array(
-        'taxonomy' => 'amcfilter', // 指定分類法
-        'hide_empty' => false      // 是否隱藏沒有文章的分類，false 表示顯示所有
-      ));
+      // // 抓取 amcfilter 分類的所有細項
+      // $terms = get_terms(array(
+      //   'taxonomy' => 'amcfilter', // 指定分類法
+      //   'hide_empty' => false      // 是否隱藏沒有文章的分類，false 表示顯示所有
+      // ));
 
-      if (!empty($terms) && !is_wp_error($terms)) {
-        echo '<ul>';
-        foreach ($terms as $term) {
-          // 顯示分類名稱和連結
-          echo '<li>';
-          echo '<a href="' . esc_url(get_term_link($term)) . '">';
-          echo esc_html($term->name);
-          echo '</a>';
-          echo '</li>';
-        }
-        echo '</ul>';
-      } else {
-        echo '<p>目前沒有分類細項。</p>';
-      }
+      // if (!empty($terms) && !is_wp_error($terms)) {
+
+      //   echo '<div class="box_container box_start ">';
+      //   echo '  <div style="padding-left:3px;">tag:  </div>';
+      //   foreach ($terms as $term) {
+      //     echo '  <div style="padding-left:10px;">';
+      //    // echo '<li>';
+      //     echo '<a href="' . esc_url(get_term_link($term)) . '">';
+      //     echo esc_html($term->name);
+      //     echo '</a>';
+      //     //echo '</li>';
+      //     echo '  </div>';
+           
+      //   }
+      //   echo '</div>';
+         
+      // } else {
+      //   //目前沒有分類細項
+      // }
 
 
       // $category_name = isset($_GET['tag']) ? sanitize_text_field($_GET['tag']) : '';
@@ -164,6 +170,7 @@
 
   </div>
 
+  
 
 
 </div>
