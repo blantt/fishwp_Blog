@@ -91,12 +91,13 @@
     <div id="post-container">
       <?php
       // 創建一個新的查詢對象
-      $userNotes = new WP_Query(array(
-        'post_type' => 'note',
-        'posts_per_page' => -1,
-        'author' => get_current_user_id()
-      ));
+      // $userNotes = new WP_Query(array(
+      //   'post_type' => 'note',
+      //   'posts_per_page' => -1,
+      //   'author' => get_current_user_id()
+      // ));
 
+      $userNotes = get_filtered_posts('note', 'itfilter');
       // 檢查是否有文章
       if ($userNotes->have_posts()) {
         while ($userNotes->have_posts()) {

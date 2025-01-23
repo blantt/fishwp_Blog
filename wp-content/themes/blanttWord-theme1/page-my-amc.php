@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 </head>
+
+
 <?php get_header('empty'); ?>
 <style>
   html,
@@ -90,13 +93,49 @@
     </div>
     <div id="post-container">
       <?php
-      // 創建一個新的查詢對象
-      $userNotes = new WP_Query(array(
-        'post_type' => 'AMC',
-        'posts_per_page' => -1,
-        'author' => get_current_user_id()
+
+
+      // 抓取 amcfilter 分類的所有細項
+      $terms = get_terms(array(
+        'taxonomy' => 'amcfilter', // 指定分類法
+        'hide_empty' => false      // 是否隱藏沒有文章的分類，false 表示顯示所有
       ));
 
+      if (!empty($terms) && !is_wp_error($terms)) {
+        echo '<ul>';
+        foreach ($terms as $term) {
+          // 顯示分類名稱和連結
+          echo '<li>';
+          echo '<a href="' . esc_url(get_term_link($term)) . '">';
+          echo esc_html($term->name);
+          echo '</a>';
+          echo '</li>';
+        }
+        echo '</ul>';
+      } else {
+        echo '<p>目前沒有分類細項。</p>';
+      }
+
+
+      // $category_name = isset($_GET['tag']) ? sanitize_text_field($_GET['tag']) : '';
+
+      // $tax_query = array();
+      // if (!empty($category_name)) {
+      //   $tax_query[] = array(
+      //     'taxonomy' => 'amcfilter',
+      //     'field' => 'name',
+      //     'terms' => $category_name
+      //   );
+      // }
+
+      // $userNotes = new WP_Query(array(
+      //   'post_type' => 'AMC',                // 自訂文章類型
+      //   'posts_per_page' => -1,             // 取得所有文章
+      //   //'author' => get_current_user_id(),  // 篩選目前使用者的文章
+      //   'tax_query' => $tax_query
+      // ));
+
+      $userNotes = get_filtered_posts('AMC', 'amcfilter');
       // 檢查是否有文章
       if ($userNotes->have_posts()) {
         while ($userNotes->have_posts()) {
@@ -125,6 +164,6 @@
 
   </div>
 
-    
+
 
 </div>

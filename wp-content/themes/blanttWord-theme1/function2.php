@@ -119,7 +119,7 @@ function blanttJs()
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <!-- ---自定義js========= -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   
+
     <!-- 引入 Kendo UI JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2021.3.914/js/kendo.all.min.js"></script>
@@ -127,23 +127,25 @@ function blanttJs()
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <style>
-
         /* 設定子選單位置 */
         .dropdown-submenu {
             position: relative;
         }
 
-            .dropdown-submenu > .dropdown-menu {
-                top: 0;
-                left: 100%; /* 讓子選單靠右對齊 */
-                margin-top: -0.5rem; /* 微調位置 */
-                display: none; /* 預設不顯示子選單 */
-            }
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            /* 讓子選單靠右對齊 */
+            margin-top: -0.5rem;
+            /* 微調位置 */
+            display: none;
+            /* 預設不顯示子選單 */
+        }
 
-            .dropdown-submenu:hover > .dropdown-menu {
-                display: block; /* 滑鼠移入時顯示子選單 */
-            }
-
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+            /* 滑鼠移入時顯示子選單 */
+        }
     </style>
 
 
@@ -167,22 +169,22 @@ function pageBanner2()
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn-outline-success">
                         <i class="bi bi-house"></i> Home
                     </a>
-                  
+
                     <a class="btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-bookmarks-fill"> </i> 小說創作
                     </a>
                     <ul class="dropdown-menu">
-                        
+
                         <li class="dropdown-submenu">
                             <a class="dropdown-item" href="#">
-                            長篇小說 <i class="fas fa-chevron-right"></i> <!-- 添加右箭頭圖標 -->
+                                長篇小說 <i class="fas fa-chevron-right"></i> <!-- 添加右箭頭圖標 -->
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<?php echo esc_url(site_url('/my-momo?sch=生命樹')); ?>">生命樹的願望</a></li>
                                 <li><a class="dropdown-item" href="<?php echo esc_url(site_url('/my-momo?sch=異夢')); ?>">異夢</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item"  href="<?php echo esc_url(site_url('/my-momo?sch=短篇小說')); ?>">短篇小說集</a></li>
+                        <li><a class="dropdown-item" href="<?php echo esc_url(site_url('/my-momo?sch=短篇小說')); ?>">短篇小說集</a></li>
                     </ul>
 
                     <a href="<?php echo esc_url(site_url('/my-notes2')); ?>" class="btn btn-outline-primary">
@@ -194,11 +196,11 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
-                    
+
                     <a href="<?php echo esc_url(site_url('/my-testmenu')); ?>" class="btn btn-outline-success">
                         <i class="bi bi-bookmarks-fill"></i> testMenu2
                     </a>
- 
+
                     <?php
                     // 在WordPress模板或自定义页面模板中
                     if (is_user_logged_in() == true) {
@@ -214,7 +216,7 @@ function pageBanner2()
                     }
 
                     ?>
-                    
+
                 </div>
             </div>
         </div>
@@ -224,5 +226,53 @@ function pageBanner2()
 
 <?php
 
+}
 
+//頁面按下文章分類,強制導向自己的頁面
+add_action('template_redirect', function () {
+    // 檢查是否為特定分類法的頁面
+    $current_term = get_queried_object(); // 獲取當前分類物件
+    $category_name = $current_term->name; // 如：旅行
+    $category_slug = $current_term->slug; // 如：travel
+
+    if (is_tax('amcfilter')) {
+
+        // 跳轉到自訂頁面並附加分類資訊作為參數
+        // wp_redirect(home_url('/page-my-amc.php?ss=' . urlencode($category_name)));
+        wp_redirect(site_url('/my-amc?tag=' . urlencode($category_name)));
+        exit;
+    } elseif (is_tax('itfilter')) {
+        wp_redirect(site_url('/my-notes?tag=' . urlencode($category_name)));
+        exit;
+    } elseif (is_tax('otherfilter')) {
+        wp_redirect(site_url('/my-other-page'));
+        exit;
+    }
+});
+
+//得出文章內容,並且可以過濾分類(para=tag)
+function get_filtered_posts($post_type, $taxonomy)
+{
+    // 從 URL 取得篩選條件（例如 ?tag=旅行）
+    $category_name = isset($_GET['tag']) ? sanitize_text_field($_GET['tag']) : '';
+
+    // 建立 tax_query 條件
+    $tax_query = array();
+    if (!empty($category_name)) {
+        $tax_query[] = array(
+            'taxonomy' => $taxonomy,
+            'field' => 'name',   // 根據名稱篩選
+            'terms' => $category_name
+        );
+    }
+
+    // 執行 WP_Query 並回傳結果
+    $query = new WP_Query(array(
+        'post_type' => $post_type,   // 自訂文章類型
+        'posts_per_page' => -1,      // 取得所有符合條件的文章
+        //'author' => get_current_user_id(), // 如需篩選目前使用者，可解除註解
+        'tax_query' => $tax_query
+    ));
+
+    return $query; // 回傳 WP_Query 物件
 }
