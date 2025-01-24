@@ -196,23 +196,29 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
-
-                    <a href="<?php echo esc_url(site_url('/my-testmenu')); ?>" class="btn btn-outline-success">
-                        <i class="bi bi-bookmarks-fill"></i> testMenu2
-                    </a>
-
+                     
+                     
                     <?php
                     // 在WordPress模板或自定义页面模板中
                     if (is_user_logged_in() == true) {
                         // 如果用户已登录，显示按钮
                         echo '<a href="' . esc_url(site_url('/my-amc')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>AMC</a>';
-                        echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
-                        echo '<a href="' . esc_url(wp_registration_url()) . '" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>';
-                    } else {
-                        // 可选：如果用户未登录，显示登录提示或不显示任何内容
 
-                        echo '<a href="' . esc_url(wp_login_url()) . ' class="btn btn--small btn--orange float-left push-right">Login</a>';
+                        echo '<a href="' . esc_url(site_url('/my-testmenu')) . '" class="btn btn-outline-primary">';
+                        echo '<i class="bi bi-egg-fried"></i>testMenu2</a>';
+
+
+                        echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
+                        
+                        echo '<a href="' . esc_url(wp_logout_url(home_url())) . '" class="btn btn-outline-primary">';
+                        echo '<i class="bi bi-egg-fried"></i>登出</a>';
+                   
+                   
+                    } else {
+                         
+                        echo '<a href="' . esc_url(site_url('/my-login')) . '" class="btn btn-outline-primary">';
+                        echo '<i class="bi bi-egg-fried"></i>登入</a>';
                     }
 
                     ?>
@@ -250,6 +256,7 @@ add_action('template_redirect', function () {
     }
 });
 
+//開始處理文章分類和標籤
 //得出文章內容,並且可以過濾分類(para=tag)
 function get_filtered_posts($post_type, $taxonomy)
 {
@@ -262,10 +269,33 @@ function get_filtered_posts($post_type, $taxonomy)
         $tax_query[] = array(
             'taxonomy' => $taxonomy,
             'field' => 'name',   // 根據名稱篩選
-            'terms' => $category_name
+            'terms' => $category_name,
+            'operator' => 'IN'
         );
     }
+    $adiminUser = 'blanttfish@gmail.com';
+    $current_user = wp_get_current_user();
+    $loguseremail = '';
+    // 判斷是否有登入使用者
+    if ($current_user->ID != 0) {
+        // 顯示使用者的名稱和電子郵件
+        $loguseremail = esc_html($current_user->user_email);
+    } else {
+        $loguseremail = '';
+    }
 
+    if ($loguseremail != $adiminUser){
+        if ($taxonomy == 'itfilter') {
+            // 強制排除 分類的條件
+            $tax_query[] = array(
+                'taxonomy' => $taxonomy,
+                'field' => 'name',     // 根據名稱篩選
+                'terms' => '生涯規劃',      // 要排除的分類
+                'operator' => 'NOT IN' // 排除指定的分類
+            );
+        }
+    }
+ 
     // 執行 WP_Query 並回傳結果
     $query = new WP_Query(array(
         'post_type' => $post_type,   // 自訂文章類型
@@ -282,8 +312,9 @@ function get_filtered_posts($post_type, $taxonomy)
  *
  * @param string $taxonomy 分類法名稱
  */
-function display_taxonomy_terms($taxonomy) {
-     
+function display_taxonomy_terms($taxonomy)
+{
+
     // 抓取指定分類法的所有細項
     $terms = get_terms(array(
         'taxonomy' => $taxonomy, // 動態指定分類法
@@ -306,3 +337,4 @@ function display_taxonomy_terms($taxonomy) {
     }
 }
 
+ 

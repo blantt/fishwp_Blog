@@ -93,6 +93,17 @@
     </div>
     <div id="post-container">
       <?php
+      $current_user = wp_get_current_user();
+
+      // 判斷是否有登入使用者
+      // if ($current_user->ID != 0) {
+      //     // 顯示使用者的名稱和電子郵件
+      //     echo 'Hello, ' . esc_html($current_user->display_name) . '!<br>';
+      //     echo 'Your email is: ' . esc_html($current_user->user_email);
+      // } else {
+      //     echo 'No user is logged in.';
+      // }
+
 
       display_taxonomy_terms('amcfilter');
 
