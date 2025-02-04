@@ -5,9 +5,14 @@ add_action('wp_ajax_nopriv_my_custom_action', 'my_custom_action_callback');
 //這一行,是讓header呼叫wp_head()時,不自動顥示上方的工具003
 add_filter('show_admin_bar', '__return_false');
 
+$GLOBALS['adminUser']="blanttfish@gmail.com";
+  
+// 在其他地方使用
+echo $GLOBALS['ss1']; // 輸出: Hello World
+
 function my_custom_action_callback()
 {
-
+    
     $func = $_POST['func'];
     // error_log($func);
     switch ($func) {
@@ -202,13 +207,17 @@ function pageBanner2()
                     // 在WordPress模板或自定义页面模板中
                     if (is_user_logged_in() == true) {
                         // 如果用户已登录，显示按钮
+                        echo '<a href="' . esc_url(site_url('/my-god')) . '" class="btn btn-outline-primary">';
+                        echo '<i class="bi bi-egg-fried"></i>神學</a>';
+
+                        echo '<a href="' . esc_url(site_url('/my-art')) . '" class="btn btn-outline-primary">';
+                        echo '<i class="bi bi-egg-fried"></i>FishArt</a>';
+
                         echo '<a href="' . esc_url(site_url('/my-amc')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>AMC</a>';
 
                         echo '<a href="' . esc_url(site_url('/my-testmenu')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>testMenu2</a>';
-
-
                         echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
                         
                         echo '<a href="' . esc_url(wp_logout_url(home_url())) . '" class="btn btn-outline-primary">';
@@ -273,7 +282,7 @@ function get_filtered_posts($post_type, $taxonomy)
             'operator' => 'IN'
         );
     }
-    $adiminUser = 'blanttfish@gmail.com';
+    $adiminUser = $GLOBALS['adminUser'];
     $current_user = wp_get_current_user();
     $loguseremail = '';
     // 判斷是否有登入使用者
@@ -291,6 +300,15 @@ function get_filtered_posts($post_type, $taxonomy)
                 'taxonomy' => $taxonomy,
                 'field' => 'name',     // 根據名稱篩選
                 'terms' => '生涯規劃',      // 要排除的分類
+                'operator' => 'NOT IN' // 排除指定的分類
+            );
+        }
+        if ($taxonomy == 'mybook') {
+            // 強制排除 分類的條件
+            $tax_query[] = array(
+                'taxonomy' => $taxonomy,
+                'field' => 'name',     // 根據名稱篩選
+                'terms' => '魚的私房話',      // 要排除的分類
                 'operator' => 'NOT IN' // 排除指定的分類
             );
         }
@@ -320,14 +338,36 @@ function display_taxonomy_terms($taxonomy)
         'taxonomy' => $taxonomy, // 動態指定分類法
         'hide_empty' => false    // 是否隱藏沒有文章的分類
     ));
-
+    //$GLOBALS['adminUser']
+    $adiminUser = "blanttfish@gmail.com";
+    $current_user = wp_get_current_user();
+    $loguseremail = '';
+    // 判斷是否有登入使用者
+    if ($current_user->ID != 0) {
+        // 顯示使用者的名稱和電子郵件
+        $loguseremail = esc_html($current_user->user_email);
+    } else {
+        $loguseremail = '';
+    }
+    
     if (!empty($terms) && !is_wp_error($terms)) {
         echo '<div class="box_container box_start" style="padding-bottom:8px;">';
         echo '<div style="padding-left:3px;">分類標籤:</div>';
         foreach ($terms as $term) {
+            $tempname = $term->name;
+            if ($adiminUser != $loguseremail){
+               if ($tempname=="生涯規劃"){
+                continue;
+               }
+               if ($tempname=="魚的私房話"){
+                continue;
+               }
+
+            }
+            
             echo '<div style="padding-left:10px;">';
             echo '<a href="' . esc_url(get_term_link($term)) . '">';
-            echo esc_html($term->name);
+            echo esc_html($tempname);
             echo '</a>';
             echo '</div>';
         }
@@ -337,4 +377,6 @@ function display_taxonomy_terms($taxonomy)
     }
 }
 
- 
+add_action('init', function() {
+    add_role('pending', '待審核', array('read' => true));
+});

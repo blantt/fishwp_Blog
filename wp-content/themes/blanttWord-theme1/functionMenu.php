@@ -105,6 +105,27 @@ function blantt_post_types() {
   
   add_action('init', 'blantt_post_types');
    
+  function blantt_Art_post_types() {
+    
+    register_post_type('art', array(
+      'show_in_rest' => true,
+      'supports' => array('title', 'editor'),
+      'public' => true,
+      'show_ui' => true,
+      'labels' => array(
+        'name' => 'art',
+        'add_new_item' => '新增art',
+        'edit_item' => '編輯art',
+        'all_items' => 'All art',
+        'singular_name' => 'art'
+      ),
+      'menu_icon' => 'dashicons-welcome-write-blog'
+    ));
+    
+  }
+  
+  add_action('init', 'blantt_Art_post_types');
+
   function blantt_AMC_post_types() {
     
     register_post_type('amc', array(
@@ -125,6 +146,27 @@ function blantt_post_types() {
   }
   
   add_action('init', 'blantt_AMC_post_types');
+
+  function blantt_god_post_types() {
+    
+    register_post_type('god', array(
+      'show_in_rest' => true,
+      'supports' => array('title', 'editor'),
+      'public' => true,
+      'show_ui' => true,
+      'labels' => array(
+        'name' => 'god',
+        'add_new_item' => '新增god',
+        'edit_item' => '編輯god',
+        'all_items' => 'All god',
+        'singular_name' => 'god'
+      ),
+      'menu_icon' => 'dashicons-welcome-write-blog'
+    ));
+    
+  }
+  
+  add_action('init', 'blantt_god_post_types');
 
   function books_custom_post_type() {
       /*

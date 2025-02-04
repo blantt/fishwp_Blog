@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
 </head>
+
+
 <?php get_header('empty'); ?>
 <style>
   html,
@@ -90,15 +93,21 @@
     </div>
     <div id="post-container">
       <?php
-      display_taxonomy_terms('mybook');
-      $userNotes = get_filtered_posts('note2', 'mybook');
-      // 創建一個新的查詢對象
-      // $userNotes = new WP_Query(array(
-      //   'post_type' => 'note2',
-      //   'posts_per_page' => -1,
-      //   'author' => get_current_user_id()
-      // ));
+      $current_user = wp_get_current_user();
 
+      // 判斷是否有登入使用者
+      // if ($current_user->ID != 0) {
+      //     // 顯示使用者的名稱和電子郵件
+      //     echo 'Hello, ' . esc_html($current_user->display_name) . '!<br>';
+      //     echo 'Your email is: ' . esc_html($current_user->user_email);
+      // } else {
+      //     echo 'No user is logged in.';
+      // }
+
+
+      display_taxonomy_terms('godfilter');
+ 
+      $userNotes = get_filtered_posts('god', 'godfilter');
       // 檢查是否有文章
       if ($userNotes->have_posts()) {
         while ($userNotes->have_posts()) {
@@ -109,7 +118,7 @@
           echo '<h2>' . get_the_title() . '</h2>';
           echo '<p class="date">Published on: ' . get_the_date() . '</p>';
           echo '<p class="categories">文章分類: ';
-          the_terms($post->ID, 'mybook', '', ', ');
+          the_terms($post->ID, 'amcfilter', '', ', ');
           echo '</p>';
           echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
           echo '</div>'; // 文章容器結束
@@ -127,6 +136,7 @@
 
   </div>
 
-    
+  
+
 
 </div>
