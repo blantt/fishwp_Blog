@@ -5,14 +5,14 @@ add_action('wp_ajax_nopriv_my_custom_action', 'my_custom_action_callback');
 //這一行,是讓header呼叫wp_head()時,不自動顥示上方的工具003
 add_filter('show_admin_bar', '__return_false');
 
-$GLOBALS['adminUser']="blanttfish@gmail.com";
-  
+$GLOBALS['adminUser'] = "blanttfish@gmail.com";
+
 // 在其他地方使用
 echo $GLOBALS['ss1']; // 輸出: Hello World
 
 function my_custom_action_callback()
 {
-    
+
     $func = $_POST['func'];
     // error_log($func);
     switch ($func) {
@@ -201,8 +201,8 @@ function pageBanner2()
                     <a href="<?php echo esc_url(site_url('/my-booklist')); ?>" class="btn btn-outline-primary">
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
-                     
-                     
+
+
                     <?php
                     // 在WordPress模板或自定义页面模板中
                     if (is_user_logged_in() == true) {
@@ -219,13 +219,11 @@ function pageBanner2()
                         echo '<a href="' . esc_url(site_url('/my-testmenu')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>testMenu2</a>';
                         echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
-                        
+
                         echo '<a href="' . esc_url(wp_logout_url(home_url())) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>登出</a>';
-                   
-                   
                     } else {
-                         
+
                         echo '<a href="' . esc_url(site_url('/my-login')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>登入</a>';
                     }
@@ -259,6 +257,9 @@ add_action('template_redirect', function () {
     } elseif (is_tax('itfilter')) {
         wp_redirect(site_url('/my-notes?tag=' . urlencode($category_name)));
         exit;
+    } elseif (is_tax('artfilter')) {
+        wp_redirect(site_url('/my-art?tag=' . urlencode($category_name)));
+        exit;
     } elseif (is_tax('otherfilter')) {
         wp_redirect(site_url('/my-other-page'));
         exit;
@@ -271,7 +272,7 @@ function get_filtered_posts($post_type, $taxonomy)
 {
     // 從 URL 取得篩選條件（例如 ?tag=旅行）
     $category_name = isset($_GET['tag']) ? sanitize_text_field($_GET['tag']) : '';
-
+    // echo 'go in' . $category_name ;
     // 建立 tax_query 條件
     $tax_query = array();
     if (!empty($category_name)) {
@@ -293,7 +294,7 @@ function get_filtered_posts($post_type, $taxonomy)
         $loguseremail = '';
     }
 
-    if ($loguseremail != $adiminUser){
+    if ($loguseremail != $adiminUser) {
         if ($taxonomy == 'itfilter') {
             // 強制排除 分類的條件
             $tax_query[] = array(
@@ -313,7 +314,7 @@ function get_filtered_posts($post_type, $taxonomy)
             );
         }
     }
- 
+
     // 執行 WP_Query 並回傳結果
     $query = new WP_Query(array(
         'post_type' => $post_type,   // 自訂文章類型
@@ -349,22 +350,21 @@ function display_taxonomy_terms($taxonomy)
     } else {
         $loguseremail = '';
     }
-    
+
     if (!empty($terms) && !is_wp_error($terms)) {
         echo '<div class="box_container box_start" style="padding-bottom:8px;">';
         echo '<div style="padding-left:3px;">分類標籤:</div>';
         foreach ($terms as $term) {
             $tempname = $term->name;
-            if ($adiminUser != $loguseremail){
-               if ($tempname=="生涯規劃"){
-                continue;
-               }
-               if ($tempname=="魚的私房話"){
-                continue;
-               }
-
+            if ($adiminUser != $loguseremail) {
+                if ($tempname == "生涯規劃") {
+                    continue;
+                }
+                if ($tempname == "魚的私房話") {
+                    continue;
+                }
             }
-            
+
             echo '<div style="padding-left:10px;">';
             echo '<a href="' . esc_url(get_term_link($term)) . '">';
             echo esc_html($tempname);
@@ -377,6 +377,6 @@ function display_taxonomy_terms($taxonomy)
     }
 }
 
-add_action('init', function() {
+add_action('init', function () {
     add_role('pending', '待審核', array('read' => true));
 });
