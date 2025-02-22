@@ -247,17 +247,32 @@ add_action('template_redirect', function () {
     $current_term = get_queried_object(); // 獲取當前分類物件
     $category_name = $current_term->name; // 如：旅行
     $category_slug = $current_term->slug; // 如：travel
-
-    if (is_tax('amcfilter')) {
-
+     
+    if ($current_term && isset($current_term->name)) {
+      //  echo '目前分類: ' . $category_name;
+      
+        //exit;
+    }
+    else {
+       // echo '無分類: ' ;
+    }
+    if (is_tax(taxonomy: 'amcfilter')) {
+        
         // 跳轉到自訂頁面並附加分類資訊作為參數
         // wp_redirect(home_url('/page-my-amc.php?ss=' . urlencode($category_name)));
         wp_redirect(site_url('/my-amc?tag=' . urlencode($category_name)));
         exit;
-    } elseif (is_tax('itfilter')) {
+    } 
+    elseif (is_tax(taxonomy: 'godfilter')) {
+        wp_redirect(site_url('/my-god?tag=' . urlencode($category_name)));
+        //echo '進來 itfilter'; 
+       exit;}
+    elseif (is_tax(taxonomy: 'itfilter')) {
+       // echo '進來 itfilter';
         wp_redirect(site_url('/my-notes?tag=' . urlencode($category_name)));
         exit;
     } elseif (is_tax('artfilter')) {
+        
         wp_redirect(site_url('/my-art?tag=' . urlencode($category_name)));
         exit;
     } elseif (is_tax('otherfilter')) {
