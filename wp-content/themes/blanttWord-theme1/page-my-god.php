@@ -80,7 +80,37 @@
     text-align: justify;
   }
 </style>
+<?php
 
+   $godfiltertype = "godfiltertype";
+
+?>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let pageShowType = "<?php echo $godfiltertype; ?>";
+    
+    // 讀取 Cookie 並設定控制項的預設值
+    let mode = getCookie(pageShowType);
+    //alert('aaa1')
+    if (mode) {
+      document.getElementById("modeSelector").value = mode;
+
+    };
+
+    //監聽選擇變更事件
+    document.getElementById("modeSelector").addEventListener("change", function() {
+      let selectedMode = this.value;
+      document.cookie = pageShowType+"=" + selectedMode + "; path=/; max-age=" + (30 * 24 * 60 * 60); // 設定 30 天有效
+      // 強制刷新頁面
+      location.reload();
+    });
+  });
+  // // 獲取 Cookie 的函數
+  // function getCookie(name) {
+  //     let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  //     return match ? match[2] : null;
+  // }
+</script>
 <div class=" fullbk box_container box_column box_start" style="height:100%; ">
 
   <div class="box_item boxrow box_column itemfull box下方 ">
@@ -91,42 +121,36 @@
 
       ?>
     </div>
+    <select id="modeSelector">
+      <option value="0">單項</option>
+      <option value="1">複項</option>
+    </select>
     <div id="post-container">
       <?php
-      $current_user = wp_get_current_user();
-
-      // 判斷是否有登入使用者
-      // if ($current_user->ID != 0) {
-      //     // 顯示使用者的名稱和電子郵件
-      //     echo 'Hello, ' . esc_html($current_user->display_name) . '!<br>';
-      //     echo 'Your email is: ' . esc_html($current_user->user_email);
-      // } else {
-      //     echo 'No user is logged in.';
-      // }
 
 
-      display_taxonomy_terms('godfilter');
- 
-      $userNotes = get_filtered_posts('god', 'godfilter');
-      // 檢查是否有文章
-      if ($userNotes->have_posts()) {
-        while ($userNotes->have_posts()) {
-          $userNotes->the_post();
+      $issinglemode = false;
+      $thisfilter = "godfilter";
+      $thisposttype = "god";
+      // 設定 Cookie，名稱為 "user_preference"，值為 "dark_mode"，有效期為 30 天
+      // setcookie($godfiltertype, "1", time() + 30 * 24 * 60 * 60, "/");
 
-          // 為每篇文章創建一個包含標題、時間和內容的HTML結構2
-          echo '<div class="post">';
-          echo '<h2>' . get_the_title() . '</h2>';
-          echo '<p class="date">Published on: ' . get_the_date() . '</p>';
-          echo '<p class="categories">文章分類: ';
-          the_terms($post->ID, 'godfilter', '', ', ');
-          echo '</p>';
-          echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
-          echo '</div>'; // 文章容器結束
+      if (isset($_COOKIE[$godfiltertype])) {
+       //echo "Your type: " . $_COOKIE[$godfiltertype];
+        if ($_COOKIE[$godfiltertype] == 0) {
+          $issinglemode = true;
         }
       } else {
-        echo '<p>No notes found.</p>';
+        //echo "No preference set.";
       }
-      
+
+      $current_user = wp_get_current_user();
+      display_taxonomy_terms($thisfilter);
+
+      $userNotes = get_filtered_posts($thisposttype, $thisfilter);
+      // 檢查是否有文章
+
+      display_post(thisposttype: $thisposttype, thisfilter: $thisfilter, singlemode: $issinglemode);
       // 重置全局$post物件
       wp_reset_postdata();
       ?>
@@ -136,7 +160,7 @@
 
   </div>
 
-  
+
 
 
 </div>

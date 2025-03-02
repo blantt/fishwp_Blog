@@ -247,32 +247,30 @@ add_action('template_redirect', function () {
     $current_term = get_queried_object(); // 獲取當前分類物件
     $category_name = $current_term->name; // 如：旅行
     $category_slug = $current_term->slug; // 如：travel
-     
+
     if ($current_term && isset($current_term->name)) {
-      //  echo '目前分類: ' . $category_name;
-      
+        //  echo '目前分類: ' . $category_name;
+
         //exit;
-    }
-    else {
-       // echo '無分類: ' ;
+    } else {
+        // echo '無分類: ' ;
     }
     if (is_tax(taxonomy: 'amcfilter')) {
-        
+
         // 跳轉到自訂頁面並附加分類資訊作為參數
         // wp_redirect(home_url('/page-my-amc.php?ss=' . urlencode($category_name)));
         wp_redirect(site_url('/my-amc?tag=' . urlencode($category_name)));
         exit;
-    } 
-    elseif (is_tax(taxonomy: 'godfilter')) {
+    } elseif (is_tax(taxonomy: 'godfilter')) {
         wp_redirect(site_url('/my-god?tag=' . urlencode($category_name)));
         //echo '進來 itfilter'; 
-       exit;}
-    elseif (is_tax(taxonomy: 'itfilter')) {
-       // echo '進來 itfilter';
+        exit;
+    } elseif (is_tax(taxonomy: 'itfilter')) {
+        // echo '進來 itfilter';
         wp_redirect(site_url('/my-notes?tag=' . urlencode($category_name)));
         exit;
     } elseif (is_tax('artfilter')) {
-        
+
         wp_redirect(site_url('/my-art?tag=' . urlencode($category_name)));
         exit;
     } elseif (is_tax('otherfilter')) {
@@ -340,6 +338,45 @@ function get_filtered_posts($post_type, $taxonomy)
 
     return $query; // 回傳 WP_Query 物件
 }
+
+ 
+
+// 顥示文章內容
+function display_post($thisposttype,$thisfilter,  $singlemode = false)
+{
+    $userNotes = get_filtered_posts($thisposttype, $thisfilter);
+    // 檢查是否有文章
+    if ($userNotes->have_posts()) {
+        while ($userNotes->have_posts()) {
+            $userNotes->the_post();
+
+            if ($singlemode) {
+                echo '<h2><a href="' . get_permalink(get_the_ID()) . '">' . get_the_title() . '</a></h2>';
+            } else {
+                echo '<h2>' . get_the_title() . '</h2>';
+                echo '<p class="date">Published on: ' . get_the_date() . '</p>';
+                echo '<p class="categories">文章分類: ';
+                the_terms(get_the_ID(), $thisfilter, '', ', ');
+                echo '</p>';
+                echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
+            }
+
+            // 為每篇文章創建一個包含標題、時間和內容的HTML結構2
+            // echo '<div class="post">';
+            // echo '<h2>' . get_the_title() . '</h2>';
+            // echo '<p class="date">Published on: ' . get_the_date() . '</p>';
+            // echo '<p class="categories">文章分類: ';
+            // the_terms(get_the_ID(), $thisfilter, '', ', '); // 這裡改用 get_the_ID()
+            // echo '</p>';
+            // echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
+            // echo '</div>'; 
+            // 文章容器結束
+        }
+    } else {
+        echo '<p>No notes found.</p>';
+    }
+}
+
 
 /**
  * 顯示指定分類法的所有細項（分類項目）
