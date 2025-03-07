@@ -86,7 +86,35 @@
 
 ?>
 <script>
-   
+  document.addEventListener("DOMContentLoaded", function() {
+    let pageShowType = "<?php echo $godfiltertype; ?>";
+    
+    // 讀取 Cookie 並設定控制項的預設值
+    let mode = getCookie(pageShowType);
+    //alert('aaa1')
+    if (mode) {
+      if (mode === "1") {
+        document.getElementById("checkSingle").checked = true;
+      } else {
+        document.getElementById("checkSingle").checked = false;
+      }
+    };
+
+    
+    document.getElementById("checkSingle").addEventListener("change", function () {
+        let selectedMode = this.checked ? "1" : "0";
+        document.cookie = pageShowType+"=" + selectedMode + "; path=/; max-age=" + (30 * 24 * 60 * 60); // 設定 30 天有效
+        // 強制刷新頁面
+       location.reload();
+    });
+
+
+  });
+  // // 獲取 Cookie 的函數
+  // function getCookie(name) {
+  //     let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  //     return match ? match[2] : null;
+  // }
 </script>
 <div class=" fullbk box_container box_column box_start" style="height:100%; ">
 
@@ -98,7 +126,13 @@
 
       ?>
     </div>
-     
+    
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="checkSingle">
+        <label class="form-check-label" for="checkSingle">文章條列式</label>
+    </div>
+
+ 
     <div id="post-container">
       <?php
  
@@ -117,15 +151,7 @@
         //echo "No preference set.";
       }
 
-      $current_user = wp_get_current_user();
-      display_taxonomy_terms($thisfilter);
-
-      $userNotes = get_filtered_posts($thisposttype, $thisfilter);
-      // 檢查是否有文章
-
-      display_post(thisposttype: $thisposttype, thisfilter: $thisfilter, singlemode: $issinglemode);
-      // 重置全局$post物件
-      wp_reset_postdata();
+       
       ?>
 
     </div>
@@ -137,3 +163,10 @@
 
 
 </div>
+
+
+
+
+
+
+

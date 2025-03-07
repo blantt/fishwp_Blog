@@ -202,10 +202,10 @@ function pageBanner2()
                         <i class="bi bi-egg-fried"></i>連載漫畫
                     </a>
 
-
                     <?php
                     // 在WordPress模板或自定义页面模板中
                     if (is_user_logged_in() == true) {
+
                         // 如果用户已登录，显示按钮
                         echo '<a href="' . esc_url(site_url('/my-god')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>神學</a>';
@@ -219,6 +219,16 @@ function pageBanner2()
                         echo '<a href="' . esc_url(site_url('/my-testmenu')) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>testMenu2</a>';
                         echo '<a href="' . esc_url(admin_url('/')) . '" class="btn btn-outline-success"><i class="bi bi-bluetooth"></i> 控制台</a>';
+
+                    ?>
+                        <a class="btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bookmarks-fill"> </i> 後台設定
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" href="<?php echo esc_url(site_url('/my-sett')); ?>">設定</a></li>
+                        </ul>
+                    <?php
 
                         echo '<a href="' . esc_url(wp_logout_url(home_url())) . '" class="btn btn-outline-primary">';
                         echo '<i class="bi bi-egg-fried"></i>登出</a>';
@@ -339,10 +349,10 @@ function get_filtered_posts($post_type, $taxonomy)
     return $query; // 回傳 WP_Query 物件
 }
 
- 
+
 
 // 顥示文章內容
-function display_post($thisposttype,$thisfilter,  $singlemode = false)
+function display_post($thisposttype, $thisfilter,  $singlemode = false)
 {
     $userNotes = get_filtered_posts($thisposttype, $thisfilter);
     // 檢查是否有文章
