@@ -1,15 +1,20 @@
 <?php
+
+//defined 設置全域變數!
+if (!defined('cookie_pageSingle')) {
+    define('cookie_pageSingle', 'pageSingle');
+}
+if (!defined('adminUser')) {
+    define('adminUser', 'blanttfish@gmail.com');
+}
+
 add_action('wp_ajax_my_custom_action', 'my_custom_action_callback');
 add_action('wp_ajax_nopriv_my_custom_action', 'my_custom_action_callback');
 
 //這一行,是讓header呼叫wp_head()時,不自動顥示上方的工具003
 add_filter('show_admin_bar', '__return_false');
 
-$GLOBALS['adminUser'] = "blanttfish@gmail.com";
-
-// 在其他地方使用
-echo $GLOBALS['ss1']; // 輸出: Hello World
-
+ 
 function my_custom_action_callback()
 {
 
@@ -306,7 +311,7 @@ function get_filtered_posts($post_type, $taxonomy)
             'operator' => 'IN'
         );
     }
-    $adiminUser = $GLOBALS['adminUser'];
+    $adiminUser = adminUser;
     $current_user = wp_get_current_user();
     $loguseremail = '';
     // 判斷是否有登入使用者
@@ -370,17 +375,7 @@ function display_post($thisposttype, $thisfilter,  $singlemode = false)
                 echo '</p>';
                 echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
             }
-
-            // 為每篇文章創建一個包含標題、時間和內容的HTML結構2
-            // echo '<div class="post">';
-            // echo '<h2>' . get_the_title() . '</h2>';
-            // echo '<p class="date">Published on: ' . get_the_date() . '</p>';
-            // echo '<p class="categories">文章分類: ';
-            // the_terms(get_the_ID(), $thisfilter, '', ', '); // 這裡改用 get_the_ID()
-            // echo '</p>';
-            // echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
-            // echo '</div>'; 
-            // 文章容器結束
+ 
         }
     } else {
         echo '<p>No notes found.</p>';
@@ -401,7 +396,7 @@ function display_taxonomy_terms($taxonomy)
         'taxonomy' => $taxonomy, // 動態指定分類法
         'hide_empty' => false    // 是否隱藏沒有文章的分類
     ));
-    //$GLOBALS['adminUser']
+    
     $adiminUser = "blanttfish@gmail.com";
     $current_user = wp_get_current_user();
     $loguseremail = '';

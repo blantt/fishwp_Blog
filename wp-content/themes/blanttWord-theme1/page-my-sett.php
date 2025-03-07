@@ -82,10 +82,12 @@
 </style>
 <?php
 
-   $godfiltertype = "godfiltertype";
+   $godfiltertype = cookie_pageSingle;
 
 ?>
 <script>
+  
+  
   document.addEventListener("DOMContentLoaded", function() {
     let pageShowType = "<?php echo $godfiltertype; ?>";
     
@@ -121,7 +123,7 @@
   <div class="box_item boxrow box_column itemfull box下方 ">
     <div>
       <?php
-
+ 
       pageBanner2();
 
       ?>
@@ -135,7 +137,7 @@
  
     <div id="post-container">
       <?php
- 
+      
       $issinglemode = false;
       $thisfilter = "godfilter";
       $thisposttype = "god";

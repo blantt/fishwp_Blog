@@ -82,7 +82,7 @@
 </style>
 <?php
 
-   $godfiltertype = "godfiltertype";
+  
 
 ?>
 <script>
@@ -105,12 +105,11 @@
       $issinglemode = false;
       $thisfilter = "godfilter";
       $thisposttype = "god";
-      // 設定 Cookie，名稱為 "user_preference"，值為 "dark_mode"，有效期為 30 天
-      // setcookie($godfiltertype, "1", time() + 30 * 24 * 60 * 60, "/");
-
-      if (isset($_COOKIE[$godfiltertype])) {
+      
+      $pageSingle = cookie_pageSingle;
+      if (isset($_COOKIE[$pageSingle])) {
        //echo "Your type: " . $_COOKIE[$godfiltertype];
-        if ($_COOKIE[$godfiltertype] == 1) {
+        if ($_COOKIE[$pageSingle] == 1) {
           $issinglemode = true;
         }
       } else {
