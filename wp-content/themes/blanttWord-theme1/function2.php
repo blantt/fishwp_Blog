@@ -366,7 +366,12 @@ function display_post($thisposttype, $thisfilter,  $singlemode = false)
             $userNotes->the_post();
 
             if ($singlemode) {
-                echo '<h2><a href="' . get_permalink(get_the_ID()) . '">' . get_the_title() . '</a></h2>';
+                // echo '<h2><a href="' . get_permalink(get_the_ID()) . '">' . get_the_title() . '</a></h2>';
+                echo '<h2><a href="' . get_permalink(get_the_ID()) . '">' . get_the_title() . '</h2>';
+                echo '<p class="date">Published on: ' . get_the_date() . '</p>';
+                echo '<p class="categories">文章分類: ';
+                the_terms(get_the_ID(), $thisfilter, '', ', ');
+                echo '</p>';
             } else {
                 echo '<h2>' . get_the_title() . '</h2>';
                 echo '<p class="date">Published on: ' . get_the_date() . '</p>';

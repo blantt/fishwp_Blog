@@ -91,29 +91,29 @@
     <div id="post-container">
       <?php
        
-      display_taxonomy_terms('itfilter');
-      $userNotes = get_filtered_posts('note', 'itfilter');
-      // 檢查是否有文章
-      if ($userNotes->have_posts()) {
-        while ($userNotes->have_posts()) {
-          $userNotes->the_post();
-
-          // 為每篇文章創建一個包含標題、時間和內容的HTML結構
-          echo '<div class="post">';
-          echo '<h2>' . get_the_title() . '</h2>';
-          echo '<p class="date">Published on: ' . get_the_date() . '</p>';
-          echo '<p class="categories">文章分類: ';
-          the_terms($post->ID, 'itfilter', '', ', ');
-          echo '</p>';
-          echo '<div class="content">' . apply_filters('the_content', get_the_content()) . '</div>';
-          echo '</div>'; // 文章容器結束
-        }
-      } else {
-        echo '<p>No notes found.</p>';
-      }
-
-      // 重置全局$post物件
-      wp_reset_postdata();
+       $issinglemode = false;
+       $thisfilter = "itfilter";
+       $thisposttype = "note"; 
+     
+       $pageSingle = cookie_pageSingle;
+       if (isset($_COOKIE[$pageSingle])) {
+        //echo "Your type: " . $_COOKIE[$godfiltertype];
+         if ($_COOKIE[$pageSingle] == 1) {
+           $issinglemode = true;
+         }
+       } else {
+         //echo "No preference set.";
+       }
+       
+       $current_user = wp_get_current_user();
+       display_taxonomy_terms($thisfilter);
+ 
+       $userNotes = get_filtered_posts($thisposttype, $thisfilter);
+       // 檢查是否有文章
+ 
+       display_post(thisposttype: $thisposttype, thisfilter: $thisfilter, singlemode: $issinglemode);
+       // 重置全局$post物件
+       wp_reset_postdata();
       ?>
 
     </div>

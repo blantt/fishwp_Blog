@@ -89,7 +89,7 @@ function blantt_post_types() {
     register_post_type('note2', array(
       'show_in_rest' => true,
       'supports' => array('title', 'editor'),
-      'public' => false,
+      'public' => true,
       'show_ui' => true,
       'labels' => array(
         'name' => '心情筆記',
@@ -284,7 +284,7 @@ function blantt_post_types() {
     register_post_type('note', array(
         'show_in_rest' => true,
         'supports' => array('title', 'editor'),
-        'public' => false,
+        'public' => true,
         'show_ui' => true,
         'labels' => array(
           'name' => '軟體人生',

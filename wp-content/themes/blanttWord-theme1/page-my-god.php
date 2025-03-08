@@ -115,7 +115,7 @@
       } else {
         //echo "No preference set.";
       }
-
+      
       $current_user = wp_get_current_user();
       display_taxonomy_terms($thisfilter);
 
