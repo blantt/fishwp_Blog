@@ -414,7 +414,7 @@ function display_taxonomy_terms($taxonomy)
     }
 
     if (!empty($terms) && !is_wp_error($terms)) {
-        echo '<div class="box_container box_start" style="padding-bottom:8px;">';
+        echo '<div class="box_container box_start" style="padding-bottom:8px;flex-wrap: wrap;">';
         echo '<div style="padding-left:3px;">分類標籤:</div>';
         foreach ($terms as $term) {
             $tempname = $term->name;
